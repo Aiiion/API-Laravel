@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use Illuminate\Support\Facades\Log;
 
 class AuthController extends Controller
 {
@@ -43,6 +44,7 @@ class AuthController extends Controller
     }
 
     public function register(Request $request){
+        Log::info($request);
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
@@ -69,6 +71,7 @@ class AuthController extends Controller
 
     public function logout()
     {
+        Log::info([Auth::user(), 'tried logout']);
         Auth::logout();
         return response()->json([
             'status' => 'success',

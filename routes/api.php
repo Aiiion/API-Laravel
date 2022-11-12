@@ -3,9 +3,10 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\RecipeListController;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -20,6 +21,7 @@ use Auth;
 // Log::info(request()->urlEncoded());
 
 Route::controller(AuthController::class)->group(function () {
+    
     Route::post('login', 'login');
     Route::post('register', 'register');
     Route::post('logout', 'logout');
@@ -27,6 +29,13 @@ Route::controller(AuthController::class)->group(function () {
 
 });
 
+Route::controller(RecipeListController::class)->group(function () {
+    
+    Route::post('/recipe-lists/create', 'create');
+    Route::get('/recipe-lists/index', 'index');
+    Route::post('/recipe-lists/delete', 'delete');
+
+});
 Route::get('recipes/complexSearch', function() {
 
     if(!Auth::user()) return response('not logged in', 403);

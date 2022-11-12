@@ -11,8 +11,9 @@ class RecipeList extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
         'name',
-        'recipe_ids'
+        'recipes'
     ];
 
     public function user(){
@@ -20,6 +21,6 @@ class RecipeList extends Model
     }
 
     public function userRecipes() {
-        return RecipeList::where('user_id', $this->user_id)->get();
+        return RecipeList::where('user_id', $this->user_id);
     }
 }
