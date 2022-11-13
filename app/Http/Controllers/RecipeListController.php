@@ -13,6 +13,7 @@ class RecipeListController extends Controller
     public function __construct()
     {
         $this->middleware('auth:api');
+        
     }
     public function index() {
         if(!Auth::user()) return response('Forbidden', 403);
@@ -37,12 +38,14 @@ class RecipeListController extends Controller
     }
 
     public function delete(Request $request) {
-        $list = RecipeList::find($request->listId);
+        Log::info($request);
+        $list = RecipeList::find($request->id);
+        Log::info($list);
         if(Auth::user()->id != $list->user_id) return response('Forbidden', 403);
 
-        $recipeList->delete();
+        $list->delete();
 
-        return response()->json($recipeList->userRecipes()->get());
+        return response()->json(Auth::user()->recipeLists()->get());
     }
 
     public function update(RecipeList $recipeList, Request $request) {

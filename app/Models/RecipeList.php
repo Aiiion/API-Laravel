@@ -21,6 +21,6 @@ class RecipeList extends Model
     }
 
     public function userRecipes() {
-        return RecipeList::where('user_id', $this->user_id);
+        return RecipeList::where('user_id', $this->user_id)->orderBy('updated_at', 'asc');
     }
 }
