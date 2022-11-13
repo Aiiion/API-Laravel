@@ -80,8 +80,7 @@ class RecipeListController extends Controller
             array_push($recipes, $request[0]);
             $list->recipes = json_encode($recipes);
             $list->save();
-        } 
-        Log::info(json_decode($list->recipes));
+        }
 
         $res = Auth::user()->recipeLists()->get();
         foreach($res as $i=>$list) {
@@ -106,7 +105,6 @@ class RecipeListController extends Controller
         }
         $list->recipes = json_encode($recipes);
         $list->save();
-        Log::info(json_decode($list->recipes));
 
         $res = Auth::user()->recipeLists()->get();
         foreach($res as $i=>$list) {
