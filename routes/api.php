@@ -34,7 +34,8 @@ Route::controller(RecipeListController::class)->group(function () {
     Route::post('/recipe-lists/create', 'create');
     Route::get('/recipe-lists/index', 'index');
     Route::post('/recipe-lists/delete', 'delete');
-
+    Route::post('/recipe-lists/update', 'update');
+    Route::post('/recipe-lists/remove', 'remove');
 });
 Route::get('recipes/complexSearch', function() {
 
@@ -63,7 +64,3 @@ Route::get('recipes/{id}', function($id) {
     Log::info($response);
     return $response;
 });
-
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });

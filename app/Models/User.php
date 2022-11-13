@@ -61,6 +61,6 @@ class User extends Authenticatable implements JWTSubject
     }
 
     public function recipeLists(){
-        return $this->hasMany(RecipeList::class);
+        return $this->hasMany(RecipeList::class)->orderBy('created_at', 'asc');
     }
 }
